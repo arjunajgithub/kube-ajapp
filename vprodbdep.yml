@@ -30,7 +30,7 @@ spec:
                   name: app-secret      # secret name given in secret.yml
                   key: db-pass          # value from the db-pass will be fetched for secrets and assigned to name MYSQL_BD_PASSWORD
       nodeSelector:
-        zone: us-east-2a                # make sure volume should also be in the same zone
+        zone: ap-south-1a                # make sure volume should also be in the same zone
       volumes:
         - name: vpro-db-data            # same as volume name mentioned above in container block
           awsElasticBlockStore:
