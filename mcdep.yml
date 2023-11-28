@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vpromc
+  labels:
+    app: vpromc
+spec:
+  selector:
+    matchLabels:
+      app: vpromc
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: vpromc				# label for our memcache pod
+    spec:
+      containers:
+      - name: vpromc
+        image: memcached		# official docker image
+        ports:	
+        - name: vpromc-port
+          containerPort: 11211	# exposed on this port

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: vprocache01             # as per app.properties name is vprocache01
+spec:
+  ports:
+  - port: 11211                 # listening on this port (mcdep-port of pod)
+    targetPort: vpromc-port     # forwarding it to this port (mcdep-port of pod)
+    protocol: TCP
+  selector:
+    app: vpromc                 # same as container template labels 
+  type: ClusterIP
