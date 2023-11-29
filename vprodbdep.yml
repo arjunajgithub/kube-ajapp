@@ -37,9 +37,9 @@ spec:
           volumeID: vol-012873843eecc401e   # create the EBL volume & add tags ->key=k8sCluster, value=viprokube.groofy.in and get the id and add here
           fsType: ext4                      # format with ext4
       initContainers:                       # will initiate lightweight busybox container and run the args to remove the lost+found folder and this container completed and exited then the main container will start
-        - name: busybox
-          image: busybox:latest
-          args: ["rm", "-rf", "/var/lib/mysql/lost+found"]
-          volumeMounts:
-            - name: vpro-db-data
-              mountPath: /var/lib/mysql
+      - name: busybox
+        image: busybox:latest
+        args: ["rm", "-rf", "/var/lib/mysql/lost+found"]
+        volumeMounts:
+        - name: vpro-db-data
+          mountPath: /var/lib/mysql
