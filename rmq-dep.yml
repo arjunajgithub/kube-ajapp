@@ -25,6 +25,6 @@ spec:
           valueFrom:
             secretKeyRef:
               name: app-secret				# secret name defined in secret.yml
-              key: rmq-pass				# value from the rmq-pass will be fetched from secrets and assigned to name RABBITMQ_DEFAULT_PASS
+              key: rmq-pass				    # value from the rmq-pass will be fetched from secrets and assigned to name RABBITMQ_DEFAULT_PASS
         - name: RABBITMQ_DEFAULT_USER		# guest username as per app.properties file
           value: "guest"					# guest password as per app.properties file, password kept in secrets  

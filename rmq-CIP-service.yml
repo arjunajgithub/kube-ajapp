@@ -4,9 +4,9 @@ metadata:
   name: vpromq01
 spec:
   ports:
-  - port: 15672                     # listing port of rmq-dep.yml pod
-    targetPort: vpromq01-port       # target port as per container port in rmq-dep.yml
+  - port: 15672                 # listing port of rmq-dep.yml pod
+    targetPort: vpromq01-port   # target port as per container port in rmq-dep.yml
     protocol: TCP
   selector:
-    app: vpromq01                   # match label of template of rmq-dep.yml
+    app: vpromq01               # match label of template of rmq-dep.yml
   type: ClusterIP
