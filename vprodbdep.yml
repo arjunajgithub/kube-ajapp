@@ -18,13 +18,13 @@ spec:
       - name: vprodb
         image: arjundhub/vprofiledb
         volumeMounts:
-        - mountPath: /var/lib/mysql	# if any folder inside (normally last+found folder will be created)is there inside then it will show error like not empty to initiate mysql database
+        - mountPath: /var/lib/mysql	# if any folder found inside then it will show error like not empty to initiate mysql database
           name: vpro-db-data		# same as created below volume block
         ports:
         - name: vprodb-port
           containerPort: 3306
         env:
-        - name: MYSQL_BD_PASSWORD
+        - name: MYSQL_DB_PASSWORD
           valueFrom:
             secretKeyRef:
               name: app-secret              # secret name given in secret.yml
@@ -36,10 +36,10 @@ spec:
         awsElasticBlockStore:
           volumeID: vol-012873843eecc401e   # create the EBL volume & add tags ->key=k8sCluster, value=viprokube.groofy.in and get the id and add here
           fsType: ext4                      # format with ext4
-      initContainers:                       # will initiate lightweight busybox container and run the args to remove the lost+found folder and this container completed and exited then the main container will start
+      initContainers:                       # initiate busybox container, run args to rm lost+found dir, this container complete & exit
       - name: busybox
         image: busybox:latest
-        args: ["rm", "-rf", "/var/lib/mysql/lost+found"]
+        args: ["rm", "-rf", "/var/lib/mysql/lost+found"]    # after removing the main container will start
         volumeMounts:
         - name: vpro-db-data
           mountPath: /var/lib/mysql
